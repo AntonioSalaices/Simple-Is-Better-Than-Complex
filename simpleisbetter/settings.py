@@ -20,8 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7+gdq(_5xyf89f*wstwrn@6$m6#j(__e0%zt-k-&0+li8+5sze'
-
+SECRET_KEY = os.getenv('ForoSecretKey') 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'boards',
 ]
 
 MIDDLEWARE = [
@@ -74,11 +74,15 @@ WSGI_APPLICATION = 'simpleisbetter.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('ForoDb'),
+        'USER': os.getenv('ForoDbUser'),
+        'PASSWORD':os.getenv('ForoPass'),
+        'HOST':'localhost',
+        'PORT':'',
     }
-}
+    }
 
 
 # Password validation
