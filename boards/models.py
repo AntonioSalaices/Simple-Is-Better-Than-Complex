@@ -11,14 +11,14 @@ class Board(models.Model):
 
 
 class Topic(models.Model):
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255, blank=False)
     last_updated = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(Board, related_name='topics', on_delete=models.PROTECT)
     starter = models.ForeignKey(User, related_name='topics', on_delete=models.PROTECT)
 
 
 class Post(models.Model):
-    message = models.TextField(max_length=4000)
+    message = models.TextField(max_length=4000, blank= False)
     topic = models.ForeignKey(Topic, related_name='posts', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
