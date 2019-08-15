@@ -44,6 +44,7 @@ urlpatterns = [
         name='password_change'),
     path('settings/password/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
+    re_path('settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
     
     re_path('boards/(?P<pk>\d+)/$',  views.TopicListView.as_view() , name='board_topics'),
     re_path('boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
